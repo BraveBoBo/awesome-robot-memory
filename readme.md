@@ -1,6 +1,6 @@
 # 机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-07-24
+> 更新日期：2026-07-26
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -137,6 +137,7 @@
 | [Spatiotemporal Knowledge Graphs as Persistent Scene Memory for Embodied Question Answering](https://arxiv.org/abs/2510.01483) | 跨视频片段的时空知识图谱 | 维持对象身份并以子图检索结合视觉 grounding，使查询延迟不再随观测历史增长 |
 | [ReferTrack: Referring Then Tracking for Embodied Visual Tracking](https://arxiv.org/abs/2607.20061) | 历史目标框滑动窗口与 TVBI tokens | 将目标框的时间、视点和几何信息注入视觉历史，持续保留单目具身跟踪中的目标运动线索 |
 | [GLAM-SLAM: Efficient Dense Gaussian SLAM for Long-Horizon Large-Scale Scenes](https://arxiv.org/abs/2607.21416) | 稀疏锚点网格、光流稠密化与分区 Gaussian 地图 | 在长距离、大尺度序列中限制地图增长并保持实时稠密重建，为持久空间记忆提供可扩展底座 |
+| [Learning Spatiotemporal Decision Priors for Efficient Path Planning under Partial Observability (ImiPath)](https://arxiv.org/abs/2607.22166) | 局部时空观测与历史轨迹决策先验 | 从示范轨迹蒸馏可复用的方向偏好，以 STAPNet 引导异构规划器减少部分可观测长程导航中的冗余搜索 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -184,6 +185,8 @@
 | [EgoRecovery: Acquiring Failure Recovery Ability Through Human Recovery Demonstration](https://arxiv.org/abs/2607.19745) | 人类与机器人共享的纠错意图经验 | 对齐人类恢复片段和少量机器人示范，由 recovery gate 在检测到失败状态时激活可执行纠错行为 |
 | [Courteous Anticipation: Improving Long-Lived Task Planning in Persistent Shared Environments](https://arxiv.org/abs/2607.20289) | 持久多机器人环境中的未来任务影响 | 估计当前计划终态对各机器人后续任务的期望成本，避免长期任务序列中的副作用累积 |
 | [Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids](https://arxiv.org/abs/2607.20345) | 零售真机执行经验 | DEED 结合文本 advantage prefix、视觉语言价值函数和针对性后训练，从真实经验改进 GR00T VLA |
+| [Addressing the Orchestration Gap in Generalist Robots via Physical Agency (Pigey)](https://arxiv.org/abs/2607.21725) | 当前任务的规划、执行、验证与恢复状态 | 在冻结 VLA 或参数化技能外构建闭环 orchestrator，持续跟踪子目标结果并在失败后重规划，无需额外收集数据或后训练 |
+| [StARS: Socially Appropriate Robot Actions via a Recommender System-Driven Approach](https://arxiv.org/abs/2607.21802) | 跨用户的稀疏社会偏好 | 将用户、场景和候选动作适宜度建模为协同过滤问题，结合场景表征生成个性化机器人动作评分 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 
@@ -207,6 +210,9 @@
 | [Koopman Dreamer: Spectrally Constrained Latent Dynamics for Stable World-Model Imagination](https://arxiv.org/abs/2607.19719) | 带谱约束的 Koopman 潜在动力学 | 通过有界旋转—缩放模态、动作双线性项和多步目标控制长期想象的误差放大与信息保留 |
 | [PhysCoRe: Physics-Based World Modeling with Residual Correction for Robotic Manipulation](https://arxiv.org/abs/2607.20653) | 可微 MPM、逐粒子材料参数估计与动力学残差修正 | 从少量交互中学习可校正的物理世界模型，并以不确定性引导探索和操作规划 |
 | [GS-Agent: A Multi-Agent System for Physically Plausible 4D World Generation](https://arxiv.org/abs/2607.21522) | 资产、材质、布局、运动与渲染代理协作 | 将语言任务转化为受物理引擎约束的动态 4D 场景，为具身世界模型的数据生成与未来模拟提供工具链 |
+| [Action-Conditioned World Model for Goal Plane Probe Guidance in Robotic Ultrasound](https://arxiv.org/abs/2607.21918) | 近期超声帧、探头动作与时间偏移 | 以潜在条件 diffusion 预测未来超声观测，再用冻结世界模型的奖励训练目标条件动作序列并执行真机闭环引导 |
+| [ViTacWorld: Scaling Visuo-Tactile World Models for Contact-Rich Robot Manipulation](https://arxiv.org/abs/2607.22530) | 动作条件的视觉—触觉未来轨迹 | 联合预测时间对齐的图像和触觉反馈，以生成 rollout 扩充接触操作训练数据并评估策略结果 |
+| [Robot-Factored World Models via Robot Rendering](https://arxiv.org/abs/2607.22535) | 控制器展开的名义轨迹与渲染机器人几何 | 将动作实现和机器人外观从生成模型中因式分解，避免未来状态泄漏，并以统一视觉接口泛化到未见机器人 embodiment |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
@@ -259,6 +265,8 @@
 | [WorldLines](https://arxiv.org/abs/2606.18847) | 跨日 household traces、状态覆盖与用户历史 | 评估 Memory QA 和 embodied task planning，不执行低层闭环动作 |
 | [Beyond Episodic Evaluation: Memory Architectural Bottlenecks in Sequential Embodied Question Answering](https://arxiv.org/abs/2607.21571) | 同一场景连续提问并跨查询保留记忆；比较占据图与持久视觉—语义 3D 记忆 | 揭示仅保留二维可通行性不足以回答后续问题；将视觉证据绑定度量 3D 几何可同时改善问答准确率与导航效率 |
 | [VoLN: Vision-Only Long-Horizon Navigation](https://arxiv.org/abs/2607.21400) | 7,210 个连续 3D 无人机长程导航 episode；大视点变化与上下文相关信标选择 | 仅用视觉、目标视图、观测历史、检索式视觉—语义 token 和本体状态进行导航，诊断长程视觉记忆与目标识别能力 |
+| [Zero-Shot Mission-Level Evaluation for Aerial MLLM Agents (MissionBench)](https://arxiv.org/abs/2607.22014) | 5 个模拟 3D 环境、4 类共 120 个长程空中任务 | 智能体仅依靠第一视角观测与动作历史自主规划、导航和报告；22 个 MLLM 中最强成功率仍低于 35% |
+| [Mag4D-SLAM Dataset: A Repeated-Traversal Multi-Modal 4D Geomagnetic Dataset for Localization and Mapping](https://arxiv.org/abs/2607.21986) | 超过 18 km 的昼夜、正反向重复遍历；LiDAR、相机、IMU、磁力计与 GNSS | 面向跨 session 地点识别、磁航向约束、回环检测与视觉退化条件下的长期定位 |
 
 ### 6.3 通用 POMDP 与记忆评测协议
 
