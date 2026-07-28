@@ -1,6 +1,6 @@
 # 机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-07-26
+> 更新日期：2026-07-28
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -138,6 +138,7 @@
 | [ReferTrack: Referring Then Tracking for Embodied Visual Tracking](https://arxiv.org/abs/2607.20061) | 历史目标框滑动窗口与 TVBI tokens | 将目标框的时间、视点和几何信息注入视觉历史，持续保留单目具身跟踪中的目标运动线索 |
 | [GLAM-SLAM: Efficient Dense Gaussian SLAM for Long-Horizon Large-Scale Scenes](https://arxiv.org/abs/2607.21416) | 稀疏锚点网格、光流稠密化与分区 Gaussian 地图 | 在长距离、大尺度序列中限制地图增长并保持实时稠密重建，为持久空间记忆提供可扩展底座 |
 | [Learning Spatiotemporal Decision Priors for Efficient Path Planning under Partial Observability (ImiPath)](https://arxiv.org/abs/2607.22166) | 局部时空观测与历史轨迹决策先验 | 从示范轨迹蒸馏可复用的方向偏好，以 STAPNet 引导异构规划器减少部分可观测长程导航中的冗余搜索 |
+| [Memory for Attention: Language-Conditioned Re-Perception with a Vision–Language–Motion Map](https://arxiv.org/abs/2607.23797) | 含对象变化历史、最近观测时间和运动通道的持久 VLMM | 将记忆用于有限感知预算下的重观测调度；其路径规划收益有限，但可优先刷新语言相关且高变化的对象 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -187,6 +188,10 @@
 | [Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids](https://arxiv.org/abs/2607.20345) | 零售真机执行经验 | DEED 结合文本 advantage prefix、视觉语言价值函数和针对性后训练，从真实经验改进 GR00T VLA |
 | [Addressing the Orchestration Gap in Generalist Robots via Physical Agency (Pigey)](https://arxiv.org/abs/2607.21725) | 当前任务的规划、执行、验证与恢复状态 | 在冻结 VLA 或参数化技能外构建闭环 orchestrator，持续跟踪子目标结果并在失败后重规划，无需额外收集数据或后训练 |
 | [StARS: Socially Appropriate Robot Actions via a Recommender System-Driven Approach](https://arxiv.org/abs/2607.21802) | 跨用户的稀疏社会偏好 | 将用户、场景和候选动作适宜度建模为协同过滤问题，结合场景表征生成个性化机器人动作评分 |
+| [WCM: World-Cognition Model for Generalizable Human-Robot Interaction](https://arxiv.org/abs/2607.22999) | 教学 episode、自主 rollout 与系统级知识 | SLAK 显式分离感知、逻辑、动作和记忆，并将人机教学与执行轨迹提炼为持续改进长程任务的监督数据 |
+| [Try Once, Then Optimal: De-Redundified Procedure Memory for Cross-Episode Exploration Amortization](https://arxiv.org/abs/2607.23702) | 绑定可识别物体实例的短程序记忆 | 首次交互后记录揭示隐藏状态的操作过程，重访时作为反馈策略的软偏置召回，减少 16%–30% 的重复探索且可从错误记忆中恢复 |
+| [A Few Words Go a Long Way: Language Guided Robot Policy Synthesis (ARCHITECT)](https://arxiv.org/abs/2607.23784) | 程序执行轨迹、语言纠错与持久技能库 | 用编码代理合成模块化机器人程序，将人工纠错 grounding 到执行轨迹并沉淀为可复用、可解释技能，逐步降低新任务所需干预 |
+| [Not Forgotten: Implementation and Evaluation of a Personalized Episodic Memory for the Humanoid Robot Head Kim](https://arxiv.org/abs/2607.24190) | 跨会话个人交互记忆 | 以向量语义相似度和记忆强度混合评分检索往期交互并注入 LLM，上线研究显示其提升社交性、可信度和温暖感 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 
@@ -213,6 +218,12 @@
 | [Action-Conditioned World Model for Goal Plane Probe Guidance in Robotic Ultrasound](https://arxiv.org/abs/2607.21918) | 近期超声帧、探头动作与时间偏移 | 以潜在条件 diffusion 预测未来超声观测，再用冻结世界模型的奖励训练目标条件动作序列并执行真机闭环引导 |
 | [ViTacWorld: Scaling Visuo-Tactile World Models for Contact-Rich Robot Manipulation](https://arxiv.org/abs/2607.22530) | 动作条件的视觉—触觉未来轨迹 | 联合预测时间对齐的图像和触觉反馈，以生成 rollout 扩充接触操作训练数据并评估策略结果 |
 | [Robot-Factored World Models via Robot Rendering](https://arxiv.org/abs/2607.22535) | 控制器展开的名义轨迹与渲染机器人几何 | 将动作实现和机器人外观从生成模型中因式分解，避免未来状态泄漏，并以统一视觉接口泛化到未见机器人 embodiment |
+| [$N_0$-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation](https://arxiv.org/abs/2607.23783) | 未来视觉、接触与动作；NeoForce 统一力觉表示 | 在 6 种 embodiment、450 个任务上进行视觉—触觉联合预训练，并以接触事件推进长程多阶段操作 |
+| [LeapBot-WA: World-Anchor Action Models via Predictive Latent Alignments](https://arxiv.org/abs/2607.23969) | foundation latent 空间中的预测语义和物理动态 | 以 JEPA World-Anchor 和 ISAE 替代像素级未来生成；训练时用动力学专家指导动作 diffusion，部署时裁除专家实现零额外开销 |
+| [FutureRTC: Real-Time Robot Execution with Anticipatory-Conditioned Action Chunking](https://arxiv.org/abs/2607.24008) | 动作真正执行时的视觉表征与本体状态 | 用状态校正和 motion-aware 特征传输弥补异步 VLA 的预测—执行错位，并以策略一致性损失平滑连续 action chunks |
+| [DeVA: Decoupled Video-Action Model with Physical Guidance for Robot Policy Learning](https://arxiv.org/abs/2607.24159) | 视频未来表征、affordance 与深度 | 将视频和动作预测拆为专用专家，通过多层特征传递把时空动态知识注入动作策略，提高小数据学习和真机泛化 |
+| [FeelWorld: Visuo-Tactile World Model for Hierarchical Contact Prediction and Planning](https://arxiv.org/abs/2607.24267) | 未来视觉 latent、接触状态、3D 力觉 latent 与滑动状态 | 以 contact-gated attention 在自由空间和接触阶段切换预测路径，并通过自回归 rollout 支持接触感知 CEM 规划 |
+| [τ: Learning Touch-Augmented Vision-Language-Action Models from Future Visual Supervision](https://arxiv.org/abs/2607.24485) | 动作条件的时空触觉表示 | 用 JEPA 风格未来视觉 latent 监督触觉表征并融合 VLA；监督仅在训练期间使用，不增加部署计算 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
