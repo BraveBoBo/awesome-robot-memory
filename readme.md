@@ -1,6 +1,6 @@
 # 机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-07-28
+> 更新日期：2026-07-29
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -139,6 +139,7 @@
 | [GLAM-SLAM: Efficient Dense Gaussian SLAM for Long-Horizon Large-Scale Scenes](https://arxiv.org/abs/2607.21416) | 稀疏锚点网格、光流稠密化与分区 Gaussian 地图 | 在长距离、大尺度序列中限制地图增长并保持实时稠密重建，为持久空间记忆提供可扩展底座 |
 | [Learning Spatiotemporal Decision Priors for Efficient Path Planning under Partial Observability (ImiPath)](https://arxiv.org/abs/2607.22166) | 局部时空观测与历史轨迹决策先验 | 从示范轨迹蒸馏可复用的方向偏好，以 STAPNet 引导异构规划器减少部分可观测长程导航中的冗余搜索 |
 | [Memory for Attention: Language-Conditioned Re-Perception with a Vision–Language–Motion Map](https://arxiv.org/abs/2607.23797) | 含对象变化历史、最近观测时间和运动通道的持久 VLMM | 将记忆用于有限感知预算下的重观测调度；其路径规划收益有限，但可优先刷新语言相关且高变化的对象 |
+| [Shared Voxel-Map-Based Cooperative Indoor UAV Guidance with a Multi-Agent Soft Actor-Critic Controller](https://arxiv.org/abs/2607.25728) | 多无人机共享的世界坐标 voxel map 与 ego-aligned BEV 切片 | 融合各机 360° LiDAR 历史形成一致空间 belief，在集中训练、分散执行下支持协同室内导航 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -192,6 +193,8 @@
 | [Try Once, Then Optimal: De-Redundified Procedure Memory for Cross-Episode Exploration Amortization](https://arxiv.org/abs/2607.23702) | 绑定可识别物体实例的短程序记忆 | 首次交互后记录揭示隐藏状态的操作过程，重访时作为反馈策略的软偏置召回，减少 16%–30% 的重复探索且可从错误记忆中恢复 |
 | [A Few Words Go a Long Way: Language Guided Robot Policy Synthesis (ARCHITECT)](https://arxiv.org/abs/2607.23784) | 程序执行轨迹、语言纠错与持久技能库 | 用编码代理合成模块化机器人程序，将人工纠错 grounding 到执行轨迹并沉淀为可复用、可解释技能，逐步降低新任务所需干预 |
 | [Not Forgotten: Implementation and Evaluation of a Personalized Episodic Memory for the Humanoid Robot Head Kim](https://arxiv.org/abs/2607.24190) | 跨会话个人交互记忆 | 以向量语义相似度和记忆强度混合评分检索往期交互并注入 LLM，上线研究显示其提升社交性、可信度和温暖感 |
+| [Belief-Aware Influence and Trust: Shaping Human Belief During Repeated Human-Robot Interaction (BAIT)](https://arxiv.org/abs/2607.25327) | 重复交互中的快速人类策略与缓慢感知信念 | 用分层粒子滤波持续估计双时间尺度 belief，并以 MPPI 在即时性能约束下平衡长期影响和用户信任 |
+| [Decompose and Reorganize: Planning with Primitives and Visuomotor Policies Learned from Demonstrations (DR-LfD)](https://arxiv.org/abs/2607.25397) | 跨示范的原子技能与接触关系 | 按接触关系分解视觉运动策略和对象中心 primitive，再通过 TAMP 门控重组为未见配置下的多阶段长程任务 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 
@@ -224,6 +227,11 @@
 | [DeVA: Decoupled Video-Action Model with Physical Guidance for Robot Policy Learning](https://arxiv.org/abs/2607.24159) | 视频未来表征、affordance 与深度 | 将视频和动作预测拆为专用专家，通过多层特征传递把时空动态知识注入动作策略，提高小数据学习和真机泛化 |
 | [FeelWorld: Visuo-Tactile World Model for Hierarchical Contact Prediction and Planning](https://arxiv.org/abs/2607.24267) | 未来视觉 latent、接触状态、3D 力觉 latent 与滑动状态 | 以 contact-gated attention 在自由空间和接触阶段切换预测路径，并通过自回归 rollout 支持接触感知 CEM 规划 |
 | [τ: Learning Touch-Augmented Vision-Language-Action Models from Future Visual Supervision](https://arxiv.org/abs/2607.24485) | 动作条件的时空触觉表示 | 用 JEPA 风格未来视觉 latent 监督触觉表征并融合 VLA；监督仅在训练期间使用，不增加部署计算 |
+| [VisualPatchWorld: Code World Models as Latent Structured Representations for Planning](https://arxiv.org/abs/2607.25236) | 主动探测、状态—动作轨迹与可执行动力学代码 | 先选择定性动力学形式再拟合自由参数，得到可检查、可编辑且可 rollout 的代码世界模型供 MPC 使用 |
+| [Temporal-Distance JEPA: Plan-Aware Representation Learning for Latent World Model Predictive Control](https://arxiv.org/abs/2607.25337) | 轨迹先后关系、跨轨迹负样本与 rollout consistency | 从无奖励日志学习有方向的时间距离，使 latent 同时表达目标进度并直接充当多步规划 cost |
+| [SAM3D-Guided Object-Centric Representation Alignment for Vision-Language-Action Models](https://arxiv.org/abs/2607.25912) | SAM3D 对象级 3D 教师表征 | 训练时将细粒度 3D 对象先验对齐到 π₀ 中间视觉特征，部署仍只用 RGB—语言输入，并改善跨子任务目标切换 |
+| [DC-WAM: Dynamic-Centric Visual Supervision and Reasoning for World-Action Models](https://arxiv.org/abs/2607.25918) | temporal-difference flow、轨迹加权与动态相关 future tokens | 将未来监督从外观重建重定向到夹爪、对象和接触区的交互动态，并以 DynaRoute attention bias 聚焦控制相关变化 |
+| [INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models](https://arxiv.org/abs/2607.26056) | 局部物理意图 $z_{t+1}-z_t$ 与目标意图 $z_g-z_t$ | 用共享 JEPA 表示把未来 latent 差分直接映射为动作分布，免除传统世界模型的大规模候选序列搜索 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
@@ -259,6 +267,7 @@
 | [ReMemBench / PRISM](https://arxiv.org/abs/2606.16178) | 8 个家庭操作任务；spatial、prospective、associative、object-set | 仿真与真机适配 | 将短期记忆扩展到约 2 分钟，并研究 history length、注意力和计算成本 |
 | [KineBench](https://arxiv.org/abs/2607.19876) | 20 个 ManiSkill3 操作任务；具身世界模型闭环评测 | 从生成视频提取 6D 末端位姿并在物理模拟器执行 | 避免 IDM 误差混淆，联合任务成功、轨迹平滑度和运动学可行性评估未来世界预测 |
 | [AXIS: A Scalable Data Engine for Generalist Robot Manipulation](https://arxiv.org/abs/2607.21588) | 207 个任务、超过 5 万条轨迹；可扩展机器人数据基础设施 | 浏览器遥操作与自动化任务生成、验证、过滤、轨迹平滑和增强 | 持续预训练 π0.5 后平均提升 5.8%，相对 RoboCasa365 提升 37.3%，用于检验数据覆盖对通用操作能力的影响 |
+| [RoboMME-Interference: Benchmarking Robot Memory Under Interference](https://arxiv.org/abs/2606.22338) | 跨 session 相关示范与可控数量的无关历史 | RoboMME 长上下文扩展 | 感知记忆随干扰 session 增加而持续衰减；新版表明先按视觉相似度检索相关示范可在各干扰级别恢复无干扰成功率 |
 
 ### 6.2 具身导航、个性化与持久世界状态
 
