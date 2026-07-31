@@ -1,6 +1,6 @@
-# 机器人长期记忆与 Memory VLA 文献综述
+# Awesome Robot Memory：机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-07-29
+> 更新日期：2026-07-30
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -140,6 +140,7 @@
 | [Learning Spatiotemporal Decision Priors for Efficient Path Planning under Partial Observability (ImiPath)](https://arxiv.org/abs/2607.22166) | 局部时空观测与历史轨迹决策先验 | 从示范轨迹蒸馏可复用的方向偏好，以 STAPNet 引导异构规划器减少部分可观测长程导航中的冗余搜索 |
 | [Memory for Attention: Language-Conditioned Re-Perception with a Vision–Language–Motion Map](https://arxiv.org/abs/2607.23797) | 含对象变化历史、最近观测时间和运动通道的持久 VLMM | 将记忆用于有限感知预算下的重观测调度；其路径规划收益有限，但可优先刷新语言相关且高变化的对象 |
 | [Shared Voxel-Map-Based Cooperative Indoor UAV Guidance with a Multi-Agent Soft Actor-Critic Controller](https://arxiv.org/abs/2607.25728) | 多无人机共享的世界坐标 voxel map 与 ego-aligned BEV 切片 | 融合各机 360° LiDAR 历史形成一致空间 belief，在集中训练、分散执行下支持协同室内导航 |
+| [Explicit Kinematic Guidance from Analytic Concepts for Vision-Language-Action Models](https://arxiv.org/abs/2607.26513) | 从 3D 视觉基础模型构建的可执行 Analytic Concepts | 动态追踪对象与机构的运动学参数，以稠密程序化奖励和显式空间约束指导 VLA 完成精细操作 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -195,6 +196,7 @@
 | [Not Forgotten: Implementation and Evaluation of a Personalized Episodic Memory for the Humanoid Robot Head Kim](https://arxiv.org/abs/2607.24190) | 跨会话个人交互记忆 | 以向量语义相似度和记忆强度混合评分检索往期交互并注入 LLM，上线研究显示其提升社交性、可信度和温暖感 |
 | [Belief-Aware Influence and Trust: Shaping Human Belief During Repeated Human-Robot Interaction (BAIT)](https://arxiv.org/abs/2607.25327) | 重复交互中的快速人类策略与缓慢感知信念 | 用分层粒子滤波持续估计双时间尺度 belief，并以 MPPI 在即时性能约束下平衡长期影响和用户信任 |
 | [Decompose and Reorganize: Planning with Primitives and Visuomotor Policies Learned from Demonstrations (DR-LfD)](https://arxiv.org/abs/2607.25397) | 跨示范的原子技能与接触关系 | 按接触关系分解视觉运动策略和对象中心 primitive，再通过 TAMP 门控重组为未见配置下的多阶段长程任务 |
+| [Practice Makes Policies: Bootstrapping Closed-Loop Visuomotor Skills from Open-World Robot Experience (HERO)](https://arxiv.org/abs/2607.26809) | 自主练习产生的跨回合交互经验 | 以启发式推理、示例复用和反思式执行启动无人工示范探索，并将反复出现的交互巩固为闭环视觉运动策略 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 
@@ -232,6 +234,12 @@
 | [SAM3D-Guided Object-Centric Representation Alignment for Vision-Language-Action Models](https://arxiv.org/abs/2607.25912) | SAM3D 对象级 3D 教师表征 | 训练时将细粒度 3D 对象先验对齐到 π₀ 中间视觉特征，部署仍只用 RGB—语言输入，并改善跨子任务目标切换 |
 | [DC-WAM: Dynamic-Centric Visual Supervision and Reasoning for World-Action Models](https://arxiv.org/abs/2607.25918) | temporal-difference flow、轨迹加权与动态相关 future tokens | 将未来监督从外观重建重定向到夹爪、对象和接触区的交互动态，并以 DynaRoute attention bias 聚焦控制相关变化 |
 | [INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models](https://arxiv.org/abs/2607.26056) | 局部物理意图 $z_{t+1}-z_t$ 与目标意图 $z_g-z_t$ | 用共享 JEPA 表示把未来 latent 差分直接映射为动作分布，免除传统世界模型的大规模候选序列搜索 |
+| [ContactFlow: Learning Actionable 3D Interaction Flow from Human and Robot Videos](https://arxiv.org/abs/2607.26579) | 人与物体之间、跨 embodiment 的 3D 接触点轨迹 | 用人类与机器人视频训练世界模型，以 propose–imagine–verify–act 闭环预测并验证可执行的交互运动 |
+| [Enfold: Distilling Future into the Present for Efficient Visuomotor Policies](https://arxiv.org/abs/2607.26657) | 未来生成器多层中间状态蒸馏得到的当前时刻预测表征 | 仅在训练期使用未来生成器，部署时以当前观测保留未来信息并降低 3.7–10.1 倍推理延迟 |
+| [ActSWM: Learning Action-Sensitive World Models for Embodied Agents](https://arxiv.org/abs/2607.26712) | 对替代动作保持可区分性的未来 latent | 通过动作可恢复的局部转移约束缓解 context collapse，使世界模型保留决策所需的动作因果差异 |
+| [CheckVLA: Event-Driven World-Model Verification for Vision-Language-Action Policies](https://arxiv.org/abs/2607.26789) | 动作条件世界模型与事件驱动关键帧库 | 以 conformal 阈值核验执行结果、重写动作后缀，并用关键事件记忆维持长程任务进度 |
+| [Temporally Centered SIGReg for Long-Horizon Vision-Language-Action Learning](https://arxiv.org/abs/2607.26924) | 相对时间中心的 latent residual | 只正则化时间残差而非完整 latent 边缘分布，减少跨任务表示混叠并提升长程操作性能 |
+| [What Can Latent World Models Know? Physical Parameter Identifiability from Multimodal Prediction](https://arxiv.org/abs/2607.27017) | 由视觉、触觉及预测目标共同决定的物理属性 latent | 证明输入决定可识别信息、预测目标决定保留信息；只有要求预测触觉时，表征才可靠编码刚度等隐含物理参数 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
@@ -287,6 +295,8 @@
 | [VoLN: Vision-Only Long-Horizon Navigation](https://arxiv.org/abs/2607.21400) | 7,210 个连续 3D 无人机长程导航 episode；大视点变化与上下文相关信标选择 | 仅用视觉、目标视图、观测历史、检索式视觉—语义 token 和本体状态进行导航，诊断长程视觉记忆与目标识别能力 |
 | [Zero-Shot Mission-Level Evaluation for Aerial MLLM Agents (MissionBench)](https://arxiv.org/abs/2607.22014) | 5 个模拟 3D 环境、4 类共 120 个长程空中任务 | 智能体仅依靠第一视角观测与动作历史自主规划、导航和报告；22 个 MLLM 中最强成功率仍低于 35% |
 | [Mag4D-SLAM Dataset: A Repeated-Traversal Multi-Modal 4D Geomagnetic Dataset for Localization and Mapping](https://arxiv.org/abs/2607.21986) | 超过 18 km 的昼夜、正反向重复遍历；LiDAR、相机、IMU、磁力计与 GNSS | 面向跨 session 地点识别、磁航向约束、回环检测与视觉退化条件下的长期定位 |
+| [HumanCLAW: A Benchmark for Long-Horizon Egocentric Find–Navigate–Interact Tasks](https://arxiv.org/abs/2607.27180) | 41 个真实场景中的 1,218 条长程第一视角任务轨迹 | 联合评测搜索、导航、交互和进度记忆；9 个 VLM 中最佳成功率仅 16.8%，主要瓶颈是身体、碰撞与任务进度的自我状态追踪 |
+| [Embodied Agents Take Control: General-Purpose Software Agents for Zero-Shot Visual Navigation](https://arxiv.org/abs/2607.26148) | 持续 perceive–act–verify–correct 的零样本具身控制循环 | 通用软件智能体可直接闭环导航，但长任务中延迟和上下文持续增长会导致性能显著下降，揭示长程记忆与上下文管理瓶颈 |
 
 ### 6.3 通用 POMDP 与记忆评测协议
 
