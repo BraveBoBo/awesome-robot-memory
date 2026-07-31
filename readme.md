@@ -1,6 +1,6 @@
 # Awesome Robot Memory：机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-07-30
+> 更新日期：2026-07-31
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -110,6 +110,7 @@
 | [RoboTTT: Context Scaling for Robot Policies](https://arxiv.org/abs/2607.15275) | 推理时梯度更新形成 fast-weight recurrent state | 将视觉—动作上下文扩展至 8K timesteps，并以 sequence action forcing 与 TBPTT 训练 |
 | [Beyond Transformers: Linear Attention Policy for Open-Vocabulary Object Goal Navigation](https://arxiv.org/abs/2607.18794) | Weighted State-Expansion Linear Attention 子状态 | 以线性注意力执行结构化内部状态更新，避免 Transformer 固定窗口在长距离部分可观测导航中的扩展瓶颈 |
 | [Beyond Fixed Goal Delivery: Online POMDP Planning for Target Interception in Crowds](https://arxiv.org/abs/2607.18517) | 人类导航意图的在线 belief 与搜索树 | 在固定计算预算下维护多个未来交互假设，并联合搜索转向和速度以完成拥挤环境中的安全拦截 |
+| [One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA](https://arxiv.org/abs/2607.28443) | 16 帧局部历史与邻居间 64-float 递归消息 | 各机器人仅凭局部观测和带宽受限通信预测一致的未来群体 token field，无需全局池化、episode 时钟或未来动作 |
 
 ### 3.5 对象中心、空间与场景记忆
 
@@ -141,6 +142,8 @@
 | [Memory for Attention: Language-Conditioned Re-Perception with a Vision–Language–Motion Map](https://arxiv.org/abs/2607.23797) | 含对象变化历史、最近观测时间和运动通道的持久 VLMM | 将记忆用于有限感知预算下的重观测调度；其路径规划收益有限，但可优先刷新语言相关且高变化的对象 |
 | [Shared Voxel-Map-Based Cooperative Indoor UAV Guidance with a Multi-Agent Soft Actor-Critic Controller](https://arxiv.org/abs/2607.25728) | 多无人机共享的世界坐标 voxel map 与 ego-aligned BEV 切片 | 融合各机 360° LiDAR 历史形成一致空间 belief，在集中训练、分散执行下支持协同室内导航 |
 | [Explicit Kinematic Guidance from Analytic Concepts for Vision-Language-Action Models](https://arxiv.org/abs/2607.26513) | 从 3D 视觉基础模型构建的可执行 Analytic Concepts | 动态追踪对象与机构的运动学参数，以稠密程序化奖励和显式空间约束指导 VLA 完成精细操作 |
+| [EgoGenesis: Egocentric World-Action Modeling with Online Anchored Projective Memory and Action-3D RoPE](https://arxiv.org/abs/2607.28243) | 首帧 3D 场景锚点与周期更新的近期状态 | Online Anchored Projective Memory 在自回归视频生成中兼顾长期几何一致性与动态刷新，供可控具身数据生成使用 |
+| [Write-Safe Flow Field Mapping under Ambiguous Onboard Sensing and Localization Drift](https://arxiv.org/abs/2607.27713) | 带 write-safety score 的持久全局流场地图 | 根据观测歧义、定位漂移和地图参考连续衰减不可靠写入，抑制错位更新累积成长期 ghost structures |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -197,6 +200,8 @@
 | [Belief-Aware Influence and Trust: Shaping Human Belief During Repeated Human-Robot Interaction (BAIT)](https://arxiv.org/abs/2607.25327) | 重复交互中的快速人类策略与缓慢感知信念 | 用分层粒子滤波持续估计双时间尺度 belief，并以 MPPI 在即时性能约束下平衡长期影响和用户信任 |
 | [Decompose and Reorganize: Planning with Primitives and Visuomotor Policies Learned from Demonstrations (DR-LfD)](https://arxiv.org/abs/2607.25397) | 跨示范的原子技能与接触关系 | 按接触关系分解视觉运动策略和对象中心 primitive，再通过 TAMP 门控重组为未见配置下的多阶段长程任务 |
 | [Practice Makes Policies: Bootstrapping Closed-Loop Visuomotor Skills from Open-World Robot Experience (HERO)](https://arxiv.org/abs/2607.26809) | 自主练习产生的跨回合交互经验 | 以启发式推理、示例复用和反思式执行启动无人工示范探索，并将反复出现的交互巩固为闭环视觉运动策略 |
+| [LabEvolver: Training-Free Experience Evolution for Safe and Grounded Wet-Lab Agents](https://arxiv.org/abs/2607.27690) | 跨任务的技能、策略与安全 episodic memory | 以内层状态 grounding 执行循环完成任务，再由外层演化循环将轨迹提炼为可复用经验，在连续实验中减少时间和安全拦截 |
+| [RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents](https://arxiv.org/abs/2607.27881) | 长时程执行状态、失败和恢复信息 | 在预训练 VLA 外构建模块化 orchestration layer，协调状态追踪、执行验证、故障恢复与跨任务/场景/embodiment 适配 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 
@@ -240,6 +245,9 @@
 | [CheckVLA: Event-Driven World-Model Verification for Vision-Language-Action Policies](https://arxiv.org/abs/2607.26789) | 动作条件世界模型与事件驱动关键帧库 | 以 conformal 阈值核验执行结果、重写动作后缀，并用关键事件记忆维持长程任务进度 |
 | [Temporally Centered SIGReg for Long-Horizon Vision-Language-Action Learning](https://arxiv.org/abs/2607.26924) | 相对时间中心的 latent residual | 只正则化时间残差而非完整 latent 边缘分布，减少跨任务表示混叠并提升长程操作性能 |
 | [What Can Latent World Models Know? Physical Parameter Identifiability from Multimodal Prediction](https://arxiv.org/abs/2607.27017) | 由视觉、触觉及预测目标共同决定的物理属性 latent | 证明输入决定可识别信息、预测目标决定保留信息；只有要求预测触觉时，表征才可靠编码刚度等隐含物理参数 |
+| [TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction](https://arxiv.org/abs/2607.28391) | 未来视觉、触觉、稠密力场、形变流与动作 | 以 mechanics-aware tactile prediction 表达接触阶段视觉难以观测的力、形变、剪切与滑动，同时阻止未来触觉成为动作生成的特权信息 |
+| [World Action Planner: Generalizable Decision-Making with Action-Conditioned World Models](https://arxiv.org/abs/2607.27599) | VLM 动作提案与 pose-image 条件未来 rollout | 在世界模型想象结果上进行优化和搜索，迭代修正初始计划以提升新场景和组合任务中的决策泛化 |
+| [QuantWAMs: Calibrating at the Right Granularity for World Action Models](https://arxiv.org/abs/2607.28405) | 面向闭环 rollout 分布的量化校准 | 按模型结构、部署轨迹和任务目标选择校准粒度，降低世界—动作联合预测的迭代去噪与闭环执行成本 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
@@ -276,6 +284,7 @@
 | [KineBench](https://arxiv.org/abs/2607.19876) | 20 个 ManiSkill3 操作任务；具身世界模型闭环评测 | 从生成视频提取 6D 末端位姿并在物理模拟器执行 | 避免 IDM 误差混淆，联合任务成功、轨迹平滑度和运动学可行性评估未来世界预测 |
 | [AXIS: A Scalable Data Engine for Generalist Robot Manipulation](https://arxiv.org/abs/2607.21588) | 207 个任务、超过 5 万条轨迹；可扩展机器人数据基础设施 | 浏览器遥操作与自动化任务生成、验证、过滤、轨迹平滑和增强 | 持续预训练 π0.5 后平均提升 5.8%，相对 RoboCasa365 提升 37.3%，用于检验数据覆盖对通用操作能力的影响 |
 | [RoboMME-Interference: Benchmarking Robot Memory Under Interference](https://arxiv.org/abs/2606.22338) | 跨 session 相关示范与可控数量的无关历史 | RoboMME 长上下文扩展 | 感知记忆随干扰 session 增加而持续衰减；新版表明先按视觉相似度检索相关示范可在各干扰级别恢复无干扰成功率 |
+| [ACE-Data-0: Human-Centric Ambient Capture as Embodied Data Engine](https://arxiv.org/abs/2607.28625) | 150 小时、1,700 万帧、75,000 个 episode；长程多模态交互 | 200 类任务、50 名参与者、2 个真实家庭环境；同步第一/第三视角、全身和手部运动、对象 6-DoF、音频与触觉 | 分层评测从感知信号、场景组件扩展至完整交互，暴露接触、遮挡、自运动和长时程条件下的能力缺口 |
 
 ### 6.2 具身导航、个性化与持久世界状态
 
