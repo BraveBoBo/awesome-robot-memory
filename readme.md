@@ -1,6 +1,6 @@
 # Awesome Robot Memory：机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-07-31
+> 更新日期：2026-08-03
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -48,6 +48,7 @@
 | [Difference-Based Relational Learning for Zero-Shot Object-Goal Visual Navigation With Direct Sim-to-Real Transfer (T-DRN)](https://arxiv.org/abs/2607.15642) | 双帧 temporal buffer 与差分关系特征 | 窄视野下维持短期对象连续性并实现 sim-to-real 导航 |
 | [TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness](https://arxiv.org/abs/2412.10345) | 将状态—动作轨迹渲染为当前图像上的视觉 trace | 无需潜在记忆库 |
 | [Instruction-driven History-aware Policies for Robotic Manipulations](https://arxiv.org/abs/2209.04899) | 联合编码语言、多视角观测与完整动作历史 | 早期全历史操作策略；CoRL 2022 |
+| [FibVLA: An Efficient Temporal Vision-Language-Action Model with Fibonacci Sampling](https://arxiv.org/abs/2607.29596) | 对视觉帧与本体状态进行 logarithmic hindsight sampling | 以少量多尺度历史覆盖长时间范围，并通过 Fibonacci 递归推理结合实时反馈生成远期动作 |
 
 ### 3.2 显式记忆库、检索与压缩
 
@@ -74,6 +75,7 @@
 | [DART-VLN: Test-Time Memory Decay and Anti-Loop Regularization for Discrete Vision-Language Navigation](https://arxiv.org/abs/2607.01043) | 读取侧记忆衰减与局部回环惩罚 | training-free 抑制陈旧、冗余历史证据并减少立即折返，不改写记忆或冻结的导航 backbone |
 | [E-TTS: A New Embodied Test-Time Scaling Framework for Robotic Manipulation](https://arxiv.org/abs/2606.27268) | history buffer 为 reasoning/action verifiers 提供历史上下文 | training-free 推理—动作联合采样、评分与闭环迭代 refinement |
 | [Scene Memory Transformer for Embodied Agents in Long-Horizon Tasks](https://arxiv.org/abs/1903.03878) | 将逐步观测嵌入场景记忆并以注意力读取时空依赖 | 面向长 episode 部分可观测导航的早期全历史记忆策略 |
+| [ST-WAM: Semantic-Temporal World Action Model for Robust Manipulation under Visual Distribution Shifts](https://arxiv.org/abs/2607.28993) | Current-Anchored Intent Retrieval 从近期 DINO 历史检索任务相关证据 | 联合语义与像素动态的未来预测，在视觉分布变化下抑制训练域幻觉且部署时无需显式生成未来图像 |
 
 ### 3.3 事件驱动与关键帧记忆
 
@@ -144,6 +146,7 @@
 | [Explicit Kinematic Guidance from Analytic Concepts for Vision-Language-Action Models](https://arxiv.org/abs/2607.26513) | 从 3D 视觉基础模型构建的可执行 Analytic Concepts | 动态追踪对象与机构的运动学参数，以稠密程序化奖励和显式空间约束指导 VLA 完成精细操作 |
 | [EgoGenesis: Egocentric World-Action Modeling with Online Anchored Projective Memory and Action-3D RoPE](https://arxiv.org/abs/2607.28243) | 首帧 3D 场景锚点与周期更新的近期状态 | Online Anchored Projective Memory 在自回归视频生成中兼顾长期几何一致性与动态刷新，供可控具身数据生成使用 |
 | [Write-Safe Flow Field Mapping under Ambiguous Onboard Sensing and Localization Drift](https://arxiv.org/abs/2607.27713) | 带 write-safety score 的持久全局流场地图 | 根据观测歧义、定位漂移和地图参考连续衰减不可靠写入，抑制错位更新累积成长期 ghost structures |
+| [HAM-VLN: Harnessing Hierarchical Agentic Memory for Zero-Shot Vision-and-Language Navigation](https://arxiv.org/abs/2607.29600) | 持久 depth-grounded world graph、近期 waypoint 与检索式旧历史 | 在决策调用中同步记录房间、对象、导航进度和失败反思，并按相关性、时效性、显著性及拓扑邻域召回，减少超过 65% 的上下文长度 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -159,6 +162,7 @@
 | [LIFT: Never Too Late for Force — Accelerating VLA Post-Training with Reactive Force Injection](https://arxiv.org/abs/2607.14236) | 力觉 | 以近期 6D 末端力构成 causal force memory，通过交叉注意力驱动接触阶段的反应式动作更新 |
 | [T-Rex: Tactile-Reactive Dexterous Manipulation](https://arxiv.org/abs/2606.17055) | 高频触觉 | temporal tactile VQ-VAE 与变速率 Mixture-of-Transformers 建模触觉历史并驱动反应式灵巧操作 |
 | [FM-VLA: Force-based Memory for Vision-Language-Action Models in Contact-Rich Manipulation](https://arxiv.org/abs/2607.18231) | 力觉与短期状态历史 | 以 VAE 将力时序压缩为 force memory tokens，辨别视觉近似但接触次数或隐状态不同的非马尔可任务 |
+| [Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration](https://arxiv.org/abs/2607.29482) | 近期机器人状态历史 | 用历史而非独立高斯噪声初始化 stochastic-interpolant action flow，显式耦合过去状态与未来动作并降低生成路径和推理成本 |
 
 ## 4. 跨 Episode 经验与系统级记忆
 
@@ -248,6 +252,9 @@
 | [TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction](https://arxiv.org/abs/2607.28391) | 未来视觉、触觉、稠密力场、形变流与动作 | 以 mechanics-aware tactile prediction 表达接触阶段视觉难以观测的力、形变、剪切与滑动，同时阻止未来触觉成为动作生成的特权信息 |
 | [World Action Planner: Generalizable Decision-Making with Action-Conditioned World Models](https://arxiv.org/abs/2607.27599) | VLM 动作提案与 pose-image 条件未来 rollout | 在世界模型想象结果上进行优化和搜索，迭代修正初始计划以提升新场景和组合任务中的决策泛化 |
 | [QuantWAMs: Calibrating at the Right Granularity for World Action Models](https://arxiv.org/abs/2607.28405) | 面向闭环 rollout 分布的量化校准 | 按模型结构、部署轨迹和任务目标选择校准粒度，降低世界—动作联合预测的迭代去噪与闭环执行成本 |
+| [WCM: A World Critic Model for Vision-Language-Action Reinforcement Learning](https://arxiv.org/abs/2607.29613) | 过去 $K$ 帧历史、动作条件下一 latent 与价值联合监督 | 以 instruction-conditioned causal Transformer 形成可更新 predictive state，使 VLA 的 RL critic 在部分可观测任务中学习跨时刻动力学 |
+| [FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution](https://arxiv.org/abs/2607.29235) | 前一动作 chunk 与执行后的真实图像 | 在下一 chunk 的 flow-matching 生成过程中异步注入细粒度真实反馈，持续 re-ground 并抑制长时程预测漂移 |
+| [BWM: A Low-Cost High-Fidelity World Simulator for Robot Learning](https://arxiv.org/abs/2607.29302) | 初始环境锚点、动态视觉历史与时间对齐动作 | 进行有状态自回归未来预测，并作为 imitation-learning 数据引擎和闭环策略评估、风险预判与排名工具 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
