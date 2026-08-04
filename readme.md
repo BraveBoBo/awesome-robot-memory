@@ -76,6 +76,7 @@
 | [E-TTS: A New Embodied Test-Time Scaling Framework for Robotic Manipulation](https://arxiv.org/abs/2606.27268) | history buffer 为 reasoning/action verifiers 提供历史上下文 | training-free 推理—动作联合采样、评分与闭环迭代 refinement |
 | [Scene Memory Transformer for Embodied Agents in Long-Horizon Tasks](https://arxiv.org/abs/1903.03878) | 将逐步观测嵌入场景记忆并以注意力读取时空依赖 | 面向长 episode 部分可观测导航的早期全历史记忆策略 |
 | [ST-WAM: Semantic-Temporal World Action Model for Robust Manipulation under Visual Distribution Shifts](https://arxiv.org/abs/2607.28993) | Current-Anchored Intent Retrieval 从近期 DINO 历史检索任务相关证据 | 联合语义与像素动态的未来预测，在视觉分布变化下抑制训练域幻觉且部署时无需显式生成未来图像 |
+| [Auto-JEPA: A Latent World Model of Continuous Intent for End-to-End Autonomous Driving](https://arxiv.org/abs/2607.29031) | 固定 trajectory memory 与未来驾驶意图检索 | 根据视觉、egomotion 历史和导航指令预测未来轨迹 latent，再检索并排序可执行轨迹；机制与机器人记忆相关，但应用边界为自动驾驶 |
 
 ### 3.3 事件驱动与关键帧记忆
 
