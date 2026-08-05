@@ -1,6 +1,6 @@
 # Awesome Robot Memory：机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-08-03
+> 更新日期：2026-08-05
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -49,6 +49,7 @@
 | [TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness](https://arxiv.org/abs/2412.10345) | 将状态—动作轨迹渲染为当前图像上的视觉 trace | 无需潜在记忆库 |
 | [Instruction-driven History-aware Policies for Robotic Manipulations](https://arxiv.org/abs/2209.04899) | 联合编码语言、多视角观测与完整动作历史 | 早期全历史操作策略；CoRL 2022 |
 | [FibVLA: An Efficient Temporal Vision-Language-Action Model with Fibonacci Sampling](https://arxiv.org/abs/2607.29596) | 对视觉帧与本体状态进行 logarithmic hindsight sampling | 以少量多尺度历史覆盖长时间范围，并通过 Fibonacci 递归推理结合实时反馈生成远期动作 |
+| [How Should Vision-Language-Action Models Use Proprioceptive State?](https://arxiv.org/abs/2608.03052) | 受控比较 5 种状态注入接口与 1–96 帧本体状态历史 | 区分真实时间变化与单纯增加条件容量的收益，并总结状态历史长度和注入位置的 VLA 设计原则 |
 
 ### 3.2 显式记忆库、检索与压缩
 
@@ -114,6 +115,7 @@
 | [Beyond Transformers: Linear Attention Policy for Open-Vocabulary Object Goal Navigation](https://arxiv.org/abs/2607.18794) | Weighted State-Expansion Linear Attention 子状态 | 以线性注意力执行结构化内部状态更新，避免 Transformer 固定窗口在长距离部分可观测导航中的扩展瓶颈 |
 | [Beyond Fixed Goal Delivery: Online POMDP Planning for Target Interception in Crowds](https://arxiv.org/abs/2607.18517) | 人类导航意图的在线 belief 与搜索树 | 在固定计算预算下维护多个未来交互假设，并联合搜索转向和速度以完成拥挤环境中的安全拦截 |
 | [One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA](https://arxiv.org/abs/2607.28443) | 16 帧局部历史与邻居间 64-float 递归消息 | 各机器人仅凭局部观测和带宽受限通信预测一致的未来群体 token field，无需全局池化、episode 时钟或未来动作 |
+| [From Routes to Steps: Separating Semantic Progress from Local Execution in Vision-and-Language Navigation](https://arxiv.org/abs/2608.03143) | 由全局指令与累积视觉历史估计的 step-level progress state | 将语义进度追踪与近期观测驱动的局部动作生成解耦，分别诊断进度记忆错误和执行错误 |
 
 ### 3.5 对象中心、空间与场景记忆
 
@@ -148,6 +150,8 @@
 | [EgoGenesis: Egocentric World-Action Modeling with Online Anchored Projective Memory and Action-3D RoPE](https://arxiv.org/abs/2607.28243) | 首帧 3D 场景锚点与周期更新的近期状态 | Online Anchored Projective Memory 在自回归视频生成中兼顾长期几何一致性与动态刷新，供可控具身数据生成使用 |
 | [Write-Safe Flow Field Mapping under Ambiguous Onboard Sensing and Localization Drift](https://arxiv.org/abs/2607.27713) | 带 write-safety score 的持久全局流场地图 | 根据观测歧义、定位漂移和地图参考连续衰减不可靠写入，抑制错位更新累积成长期 ghost structures |
 | [HAM-VLN: Harnessing Hierarchical Agentic Memory for Zero-Shot Vision-and-Language Navigation](https://arxiv.org/abs/2607.29600) | 持久 depth-grounded world graph、近期 waypoint 与检索式旧历史 | 在决策调用中同步记录房间、对象、导航进度和失败反思，并按相关性、时效性、显著性及拓扑邻域召回，减少超过 65% 的上下文长度 |
+| [Neurosymbolic Reasoning with Incremental Knowledge for Sample-Efficient Hierarchical Reinforcement Learning](https://arxiv.org/abs/2608.02993) | 探索过程中持续更新的符号环境知识 | 高层组件在当前知识表示上执行 D* 规划，低层模块从经验学习运动 primitive，并以 Belief World Tree Search 处理先验不确定性 |
+| [SLAMFormer-$\infty$: Infinite SLAM Transformer for Unbounded Frontend and Backend Processing](https://arxiv.org/abs/2608.03429) | 定义局部坐标系与尺度的 memory conditions | 以局部有界计算和全局轨迹—几何优化支持无显式距离上限的空间记忆，在超过 17 km 的序列上保持一致重建 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -207,6 +211,7 @@
 | [Practice Makes Policies: Bootstrapping Closed-Loop Visuomotor Skills from Open-World Robot Experience (HERO)](https://arxiv.org/abs/2607.26809) | 自主练习产生的跨回合交互经验 | 以启发式推理、示例复用和反思式执行启动无人工示范探索，并将反复出现的交互巩固为闭环视觉运动策略 |
 | [LabEvolver: Training-Free Experience Evolution for Safe and Grounded Wet-Lab Agents](https://arxiv.org/abs/2607.27690) | 跨任务的技能、策略与安全 episodic memory | 以内层状态 grounding 执行循环完成任务，再由外层演化循环将轨迹提炼为可复用经验，在连续实验中减少时间和安全拦截 |
 | [RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents](https://arxiv.org/abs/2607.27881) | 长时程执行状态、失败和恢复信息 | 在预训练 VLA 外构建模块化 orchestration layer，协调状态追踪、执行验证、故障恢复与跨任务/场景/embodiment 适配 |
+| [ETA: A New Agentic Paradigm for Embodied Tasks](https://arxiv.org/abs/2608.03924) | 成功与失败交互、可审计记忆和可重放轨迹 | 以 Planner–Interface–World 闭环逐步执行和核验，并将交互沉淀为可复用经验；OpenETA 提供可替换规划器、组合式工具与仿真/真机统一接口 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 
@@ -256,6 +261,13 @@
 | [WCM: A World Critic Model for Vision-Language-Action Reinforcement Learning](https://arxiv.org/abs/2607.29613) | 过去 $K$ 帧历史、动作条件下一 latent 与价值联合监督 | 以 instruction-conditioned causal Transformer 形成可更新 predictive state，使 VLA 的 RL critic 在部分可观测任务中学习跨时刻动力学 |
 | [FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution](https://arxiv.org/abs/2607.29235) | 前一动作 chunk 与执行后的真实图像 | 在下一 chunk 的 flow-matching 生成过程中异步注入细粒度真实反馈，持续 re-ground 并抑制长时程预测漂移 |
 | [BWM: A Low-Cost High-Fidelity World Simulator for Robot Learning](https://arxiv.org/abs/2607.29302) | 初始环境锚点、动态视觉历史与时间对齐动作 | 进行有状态自回归未来预测，并作为 imitation-learning 数据引擎和闭环策略评估、风险预判与排名工具 |
+| [ValueFormer: A Causal Transformer Value Function with Stage-Aware Labels for Semi-Autonomous Vision-Language-Action Policies](https://arxiv.org/abs/2608.02958) | rollout 时间上下文与阶段感知逐帧价值标签 | 同时输出平滑的优势估计和尖锐的错误检测信号，以因果 critic 表示任务进度并定位长程执行失败 |
+| [UniNav: A Unified World-Action Diffusion Model for Visual Navigation](https://arxiv.org/abs/2608.03244) | 历史帧、目标图像、未来视觉与 waypoint 联合监督 | 在同一 diffusion Transformer 中联合生成未来观测和连续导航轨迹，并以 geometry-aware camera tokens 增强空间 grounding |
+| [LiLa-WAM: Lightweight Latent Reasoning World-Action Model for Robotic Manipulation](https://arxiv.org/abs/2608.03701) | 未来状态预测与动作生成共同塑造的紧凑 latent | 以 Visual Transition Token 表达无语言任务方向，可在单张 24 GB GPU 上端到端训练世界—动作模型 |
+| [EmbodiedVAE: Disentangled Video VAE for Efficient and Controllable Embodied Manipulation](https://arxiv.org/abs/2608.02990) | 解耦机械臂运动与背景的紧凑视频 latent | 通过非对称时空压缩和最优传输一致性约束，为操作世界模型保留可控动作变化与跨帧运动连续性 |
+| [Unified Visuomotor Targets: Supervising VLAs Beyond Physical Actions](https://arxiv.org/abs/2608.03563) | 联合编码动作控制与视觉场景转移的 latent target | 不改变架构或增加数据，通过预测统一视觉运动目标提升 VLA 的训练效率、策略性能和环境鲁棒性 |
+| [Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies](https://arxiv.org/abs/2608.03727) | 未来 $K$ 帧中的世界中心 3D 转移特征 | 训练时将几何、运动、可见性和相机变化蒸馏进当前观测 VLA，部署时移除未来 clip 与 tracker |
+| [GORDON: Graph-based Object-centric Rewards for Decomposition of Long-Horizon Manipulation](https://arxiv.org/abs/2608.03753) | 对象—空间关系图与任务进度 latent | 从无动作视频学习稠密进度奖励，并由奖励时间曲线自动发现对象状态转移和长任务子阶段 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
