@@ -116,6 +116,7 @@
 | [Beyond Fixed Goal Delivery: Online POMDP Planning for Target Interception in Crowds](https://arxiv.org/abs/2607.18517) | 人类导航意图的在线 belief 与搜索树 | 在固定计算预算下维护多个未来交互假设，并联合搜索转向和速度以完成拥挤环境中的安全拦截 |
 | [One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA](https://arxiv.org/abs/2607.28443) | 16 帧局部历史与邻居间 64-float 递归消息 | 各机器人仅凭局部观测和带宽受限通信预测一致的未来群体 token field，无需全局池化、episode 时钟或未来动作 |
 | [From Routes to Steps: Separating Semantic Progress from Local Execution in Vision-and-Language Navigation](https://arxiv.org/abs/2608.03143) | 由全局指令与累积视觉历史估计的 step-level progress state | 将语义进度追踪与近期观测驱动的局部动作生成解耦，分别诊断进度记忆错误和执行错误 |
+| [SpikingNav: Robust Embodied Navigation with Spiking Neural Policies](https://arxiv.org/abs/2608.05078) | 由膜电位积分、阈值与 spike reset 维持的递归策略状态 | 以事件驱动时序动力学增强 PointNav/ObjectNav 在视觉扰动下的鲁棒性，并部署到神经形态芯片 |
 
 ### 3.5 对象中心、空间与场景记忆
 
@@ -152,6 +153,8 @@
 | [HAM-VLN: Harnessing Hierarchical Agentic Memory for Zero-Shot Vision-and-Language Navigation](https://arxiv.org/abs/2607.29600) | 持久 depth-grounded world graph、近期 waypoint 与检索式旧历史 | 在决策调用中同步记录房间、对象、导航进度和失败反思，并按相关性、时效性、显著性及拓扑邻域召回，减少超过 65% 的上下文长度 |
 | [Neurosymbolic Reasoning with Incremental Knowledge for Sample-Efficient Hierarchical Reinforcement Learning](https://arxiv.org/abs/2608.02993) | 探索过程中持续更新的符号环境知识 | 高层组件在当前知识表示上执行 D* 规划，低层模块从经验学习运动 primitive，并以 Belief World Tree Search 处理先验不确定性 |
 | [SLAMFormer-$\infty$: Infinite SLAM Transformer for Unbounded Frontend and Backend Processing](https://arxiv.org/abs/2608.03429) | 定义局部坐标系与尺度的 memory conditions | 以局部有界计算和全局轨迹—几何优化支持无显式距离上限的空间记忆，在超过 17 km 的序列上保持一致重建 |
+| [Mimir: A Neuro-Symbolic Memory System with Dynamic Grounding for Embodied Agents in Interactive Environments](https://arxiv.org/abs/2608.04933) | 可独立更新的 world memory 与 task memory | 以目标条件召回和动态 grounding 绑定对象证据、场景 belief、任务进度、失败与执行约束，再生成可执行计划 |
+| [BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation](https://arxiv.org/abs/2608.05042) | 初始点云空间记忆与邻近/子目标关键帧时间记忆 | 时间记忆在 coarse stage 判断下一步，按当前局部区域重渲染的空间记忆在 fine stage 补全遮挡几何 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -168,6 +171,7 @@
 | [T-Rex: Tactile-Reactive Dexterous Manipulation](https://arxiv.org/abs/2606.17055) | 高频触觉 | temporal tactile VQ-VAE 与变速率 Mixture-of-Transformers 建模触觉历史并驱动反应式灵巧操作 |
 | [FM-VLA: Force-based Memory for Vision-Language-Action Models in Contact-Rich Manipulation](https://arxiv.org/abs/2607.18231) | 力觉与短期状态历史 | 以 VAE 将力时序压缩为 force memory tokens，辨别视觉近似但接触次数或隐状态不同的非马尔可任务 |
 | [Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration](https://arxiv.org/abs/2607.29482) | 近期机器人状态历史 | 用历史而非独立高斯噪声初始化 stochastic-interpolant action flow，显式耦合过去状态与未来动作并降低生成路径和推理成本 |
+| [Explicit Language Memory for Long-Horizon Planning in Vision-Language-Action Models](https://arxiv.org/abs/2608.04765) | 递归自然语言记忆 | 高层 VLM 滚动压缩已完成阶段、当前证据、失败和下一意图，并以子任务条件化低层 VLA 的连续动作生成 |
 
 ## 4. 跨 Episode 经验与系统级记忆
 
@@ -176,6 +180,7 @@
 | 论文 | 记忆范围 | 核心方法 |
 |---|---|---|
 | [MemER: Scaling Up Memory for Robot Control via Experience Retrieval](https://arxiv.org/abs/2510.20328) | 跨轨迹经验 | 关键帧化经验库与检索 |
+| [Retrieve in Time, Correct in Frequency](https://arxiv.org/abs/2608.04527) | 成功 rollout 视觉—动作记忆库 | Progressive Memory Alignment 将当前累积视觉历史因果对齐到成功轨迹及其进度，再以裁剪的低频动作残差修正冻结 VLA |
 | [MAP-VLA: Memory-Augmented Prompting for VLA in Robotic Manipulation](https://arxiv.org/abs/2511.09516) | 跨示范任务阶段 | 以可学习 soft prompts 表示并按轨迹相似度检索 |
 | [OptimusVLA: Global Prior Meets Local Consistency](https://arxiv.org/abs/2602.20200) | 跨示范先验与 episode 内动作 | Global Prior Memory 与 Local Consistency Memory |
 | [RoboMemory: A Brain-inspired Multi-memory Agentic Framework for Lifelong Learning](https://arxiv.org/abs/2508.01415) | 跨任务终身记忆 | spatial、temporal、episodic、semantic memory 与动态知识图谱 |
@@ -268,6 +273,9 @@
 | [Unified Visuomotor Targets: Supervising VLAs Beyond Physical Actions](https://arxiv.org/abs/2608.03563) | 联合编码动作控制与视觉场景转移的 latent target | 不改变架构或增加数据，通过预测统一视觉运动目标提升 VLA 的训练效率、策略性能和环境鲁棒性 |
 | [Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies](https://arxiv.org/abs/2608.03727) | 未来 $K$ 帧中的世界中心 3D 转移特征 | 训练时将几何、运动、可见性和相机变化蒸馏进当前观测 VLA，部署时移除未来 clip 与 tracker |
 | [GORDON: Graph-based Object-centric Rewards for Decomposition of Long-Horizon Manipulation](https://arxiv.org/abs/2608.03753) | 对象—空间关系图与任务进度 latent | 从无动作视频学习稠密进度奖励，并由奖励时间曲线自动发现对象状态转移和长任务子阶段 |
+| [Overcoming Statistical Bias in Action-Controllable World Models](https://arxiv.org/abs/2608.04653) | 逆动作、零动作与镜像场景的反事实一致性 | CoCo 抑制视觉惯性和重复运动捷径，并以 ARC、Drift Energy 与 Mini-SSMB 检验未来是否真正受动作控制 |
+| [WorldCycle: Self-Verifiable Reinforcement Learning for Long-Horizon Video World Models](https://arxiv.org/abs/2608.04964) | 可逆闭合动作循环的空间回归与时间一致性奖励 | 无需真实未来标注即可约束长程 rollout 的状态返回误差，并以 CycleBench 诊断组合动作下的累积漂移 |
+| [DreamWAM: Beyond RGB Future Prediction for World Action Models](https://arxiv.org/abs/2608.04996) | 外观、运动、几何与语义的结构化未来监督 | 联合 RGB/运动 latent denoising 与几何/语义残差分支，将动作相关未来状态注入 ActionDiT，部署时仍只需 RGB |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
@@ -337,6 +345,7 @@
 | [POBAX](https://arxiv.org/abs/2508.00046) | 筛选 memory-improvable 环境并比较 observation-only/state gap | 适合作为部分可观测评测方法学参考 |
 | [MEMBOT Intermittent-POMDP Protocol](https://arxiv.org/abs/2509.11225) | 向 MetaWorld 与 RoboMimic 的 10 个任务注入 observation dropout | 是基于已有环境的鲁棒性协议，不是独立 benchmark |
 | [RoboMME-Interference](https://robotmemorybench.com/) | 在相关 session 前加入 0/1/3/7 个无关 session | 显式测试跨 session 干扰、历史距离和记忆污染 |
+| [Reward Structure Shapes the Interaction Between Episodic Exploration and Neural Memory in Reinforcement Learning](https://arxiv.org/abs/2608.05111) | 正交比较 episodic exploration bonus、神经记忆架构与三类奖励结构 | 用 observation-anchored reward machines 区分 structural/potential sparsity，揭示探索负责暴露证据、记忆负责把证据转化为回报 |
 
 ### 6.4 非马尔可性判据与统一报告建议
 
