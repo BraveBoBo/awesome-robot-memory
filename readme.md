@@ -1,6 +1,6 @@
 # Awesome Robot Memory：机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-08-06
+> 更新日期：2026-08-10
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -80,6 +80,8 @@
 | [ST-WAM: Semantic-Temporal World Action Model for Robust Manipulation under Visual Distribution Shifts](https://arxiv.org/abs/2607.28993) | Current-Anchored Intent Retrieval 从近期 DINO 历史检索任务相关证据 | 联合语义与像素动态的未来预测，在视觉分布变化下抑制训练域幻觉且部署时无需显式生成未来图像 |
 | [Auto-JEPA: A Latent World Model of Continuous Intent for End-to-End Autonomous Driving](https://arxiv.org/abs/2607.29031) | 固定 trajectory memory 与未来驾驶意图检索 | 根据视觉、egomotion 历史和导航指令预测未来轨迹 latent，再检索并排序可执行轨迹；机制与机器人记忆相关，但应用边界为自动驾驶 |
 | [HERA: Historical Evidence Routing Adapter for Physical Prediction in Latent World Models](https://arxiv.org/abs/2608.05523) | 以 Structured Memory Bank 保存历史 patch，并用 Memory/Workspace Registers 选择性路由证据 | 面向遮挡后的物理连续性预测；适配冻结 latent predictor，但不直接输出机器人动作 |
+| [MemPrism: Task-Conditioned Relational Memory Views for Long-Horizon Agents](https://arxiv.org/abs/2608.06745) | 将持久 event stream 与决策时 working memory 分离，并按任务选择关系、证据范围、结果条件与粒度 | 动态组合临时 relational optical view；在长程具身任务上降低记忆 token 开销 |
+| [Addressable Memory for Video World Models (WorldTrace)](https://arxiv.org/abs/2608.07408) | 为压缩 KV 槽分配分布内虚拟时间位置，避免 RoPE 相位混叠 | WorldTrace-Field 总结连续历史，WorldTrace-Landmark 原样保存转场轨迹；属于交互式视频世界模型边界工作 |
 
 ### 3.3 事件驱动与关键帧记忆
 
@@ -159,6 +161,11 @@
 | [BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation](https://arxiv.org/abs/2608.05042) | 初始点云空间记忆与邻近/子目标关键帧时间记忆 | 时间记忆在 coarse stage 判断下一步，按当前局部区域重渲染的空间记忆在 fine stage 补全遮挡几何 |
 | [Prior-SG: Task and Prior Driven Region Segmentation for Scene Graphs in Arbitrarily-Structured Environments](https://arxiv.org/abs/2608.06170) | 持续 RGB-D 流聚合的 Instance Graph 与任务条件 Prior Graph | 以视觉、几何和拓扑先验形成可重构的层次空间记忆，适应开放式环境分区 |
 | [Unified Planning-Learning Framework for Robust UUV Navigation Under Partial Observability](https://arxiv.org/abs/2608.05365) | 声呐与深度观测构建的持久 occupancy map 和紧凑动态 latent state | 在部分可观测水下环境中连接长程全局规划、短程避障与不确定性估计 |
+| [AtlasVLA: Persistent World-Ego State Modeling for Vision-Language-Action Models](https://arxiv.org/abs/2608.06729) | 全局更新的 4D voxel-hash World State Memory 与 Ego-Working State Memory | 仅用腕部相机维持视野外对象、历史自我状态和任务进度，支持长程操作中的联合空间推理 |
+| [Unordered Landmark Visual Navigation](https://arxiv.org/abs/2608.06833) | 从无序 RGB 地标图像构建的 2D 拓扑地图与图 belief | 无时间顺序、里程计或深度先验，通过 belief propagation 完成全局定位和动态子目标规划 |
+| [M2-SMap: Memory-Efficient Semantic Mapping with Hierarchical Multi-Model Representation](https://arxiv.org/abs/2608.07074) | bounded planes、对象级 superquadrics 与 GMM residual primitives | 以层次 RGB-D 几何分解形成实时紧凑语义地图；这里的 memory-efficient 主要指地图存储预算 |
+| [LifelongCrossNav: Persistent 3D Semantic Memory for Cross-Floor Multi-Object Navigation](https://arxiv.org/abs/2608.07079) | 共享稀疏 3D semantic voxel memory | 在单个顺序任务中持续累积几何、可通行性和视觉语言特征，复用历史 POI 完成跨楼层多目标导航 |
+| [WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN](https://arxiv.org/abs/2608.07267) | 单目 RGB 历史压缩成固定长度 3D scene-token prefix | 以持久几何场景上下文共同条件化未来视图与动作块，支持连续闭环视觉语言导航 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -224,6 +231,8 @@
 | [SkillMemo: Expert-guided Skill Memory Framework for Compositional Embodied Manipulation](https://arxiv.org/abs/2608.05970) | 跨长程示范的程序性技能记忆 | 以 MoE gating 隐式分割原子技能并存为可检索 key-value 表征，推理时召回并融合技能先验以增强 DP/VLA 的组合泛化 |
 | [Episodic Memory Model for Learning Robotic Manipulation Tasks](https://arxiv.org/abs/2104.10218) | 单次示范经验 | 形成可分解、可重放的状态转移与动作序列 |
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
+| [AutoIntervene: Calibrated Intervention for Action-Chunking Imitation Learning Policies](https://arxiv.org/abs/2608.07065) | 成功执行形成的 visual-action support memory | 以视觉相似度和动作一致性判断 action chunk 是否受经验支持，校准人机控制切换并保留成功纠错片段用于后训练 |
+| [MemWM: Memory-Augmented Text-Based World Model](https://arxiv.org/abs/2608.07107) | transition rules、state caches、难预测事实与任务技能 | 检索世界记忆修正下一状态想象和动作选择；覆盖 ALFWorld 等文本式具身环境，边界是不直接控制真实机器人 |
 
 ## 5. 训练与优化范式
 
@@ -286,6 +295,13 @@
 | [Robust-WAM: Bridging Generative Pretraining and Semantic Foresight in World-Action Models](https://arxiv.org/abs/2608.05903) | 将未来真实帧的语义 foresight 对齐到动作流 query tokens | 保留 VAE 生成预训练，同时让动作依赖外观不变的未来动态以增强视觉 OOD 鲁棒性 |
 | [GeniWorld: A Generalizable Interactive World Model for Robotic Manipulation via Visual Actions](https://arxiv.org/abs/2608.06332) | URDF 渲染 visual actions 与自回归视频预测 | 解耦 embodiment 运动学和环境动力学，支持闭环交互、策略评估与合成轨迹生成 |
 | [$\omega$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation](https://arxiv.org/abs/2608.06375) | 紧凑未来观测 embedding 与 diffusion whole-body action latent | 不重建未来视频，以 latent visual foresight 支持人形机器人同步移动、平衡与操作 |
+| [TaskSense: Focusing on What Matters in World Models](https://arxiv.org/abs/2608.06544) | 由前一 latent 条件化的随机空间注意力、局部重建与 inverse dynamics | 在编码前筛选控制相关区域，抑制背景干扰对视觉世界模型表征容量的占用 |
+| [Dueling World Models: Advantage-Style Action Channels for Common-Mode Distractor Rejection](https://arxiv.org/abs/2608.06706) | 从预测中减去跨动作均值以隔离 action-advantage channel | 无奖励或重建辅助目标即可抵消动作无关运动，恢复不同动作后果的可辨识性 |
+| [Is Forward Prediction Enough? Physical State Grounding for JEPA World Models (PSG-JEPA)](https://arxiv.org/abs/2608.06799) | 单 latent 的本体状态 grounding 与 latent pair 的多 horizon 关节变化 grounding | 在不增加推理成本的前提下，使预测表征可识别物理状态及状态变化并改善规划和真机策略学习 |
+| [Decoupling Intention from Trajectory: A Representational Deduction Framework for World Action Models (PILOT)](https://arxiv.org/abs/2608.06994) | 动作分支显式预测潜在 state-transition tokens | 将状态转移 token 作为 motion CoT 保留在 reasoning space，以高层物理演化指导细粒度轨迹生成 |
+| [UniJEPA: A Unified Joint-Embedding Predictive Architecture for Task-Agnostic Visual World Modeling](https://arxiv.org/abs/2608.07409) | 同一 latent 空间中的图像光度变换与视频 next-embedding prediction | 以统一 anti-collapse 目标学习不变结构和等变动态，动作条件后训练后可执行零样本规划 |
+| [Beyond Myopic World Models: Long-Horizon End-to-End Training for Direct Future Prediction (DPWM)](https://arxiv.org/abs/2608.07420) | 将任意长度动作序列压缩为单个 embedding | 一次前向直接预测 endpoint observation，以长程终点目标替代递归 rollout 及其误差累积 |
+| [ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow](https://arxiv.org/abs/2607.27924) | 物理时间中的连续 latent velocity field 与 ODE dynamics | 通过时间积分在任意分辨率预测未来或过去，并兼顾长程图像重建、规划表征和机器人控制；本批次为更新稿 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
 
