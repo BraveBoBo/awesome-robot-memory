@@ -1,6 +1,6 @@
 # Awesome Robot Memory：机器人长期记忆与 Memory VLA 文献综述
 
-> 更新日期：2026-08-10
+> 更新日期：2026-08-14
 > 范围：Vision-Language-Action、长时程操作、部分可观测决策与机器人记忆
 
 ## 摘要
@@ -51,6 +51,7 @@
 | [FibVLA: An Efficient Temporal Vision-Language-Action Model with Fibonacci Sampling](https://arxiv.org/abs/2607.29596) | 对视觉帧与本体状态进行 logarithmic hindsight sampling | 以少量多尺度历史覆盖长时间范围，并通过 Fibonacci 递归推理结合实时反馈生成远期动作 |
 | [How Should Vision-Language-Action Models Use Proprioceptive State?](https://arxiv.org/abs/2608.03052) | 受控比较 5 种状态注入接口与 1–96 帧本体状态历史 | 区分真实时间变化与单纯增加条件容量的收益，并总结状态历史长度和注入位置的 VLA 设计原则 |
 | [World-to-Wrist: Task-Conditioned Future Wrist Modeling for Fine-Grained Robot Manipulation](https://arxiv.org/abs/2608.05369) | 以任务条件 latent interface 融合当前多视角观测与腕部历史，并预测未来 wrist latents | 将局部未来表征转为动作上下文；属于 episode 内短期预测记忆，不含跨轨迹存储 |
+| [G0.5: One Autoregressive Stream for Robot Reasoning and Action](https://arxiv.org/abs/2608.11739) | 在视觉编码器中交替使用空间与时间注意力，融合稀疏的数秒视觉—本体历史 | 历史 token 在视觉塔末层丢弃以限制动作解码成本；当前仅覆盖短期记忆，但与推理和动作共享同一自回归 token 流 |
 
 ### 3.2 显式记忆库、检索与压缩
 
@@ -82,6 +83,8 @@
 | [HERA: Historical Evidence Routing Adapter for Physical Prediction in Latent World Models](https://arxiv.org/abs/2608.05523) | 以 Structured Memory Bank 保存历史 patch，并用 Memory/Workspace Registers 选择性路由证据 | 面向遮挡后的物理连续性预测；适配冻结 latent predictor，但不直接输出机器人动作 |
 | [MemPrism: Task-Conditioned Relational Memory Views for Long-Horizon Agents](https://arxiv.org/abs/2608.06745) | 将持久 event stream 与决策时 working memory 分离，并按任务选择关系、证据范围、结果条件与粒度 | 动态组合临时 relational optical view；在长程具身任务上降低记忆 token 开销 |
 | [Addressable Memory for Video World Models (WorldTrace)](https://arxiv.org/abs/2608.07408) | 为压缩 KV 槽分配分布内虚拟时间位置，避免 RoPE 相位混叠 | WorldTrace-Field 总结连续历史，WorldTrace-Landmark 原样保存转场轨迹；属于交互式视频世界模型边界工作 |
+| [DreamFly: Causal Memory and Receding-Horizon Diffusion Planning for Aerial Vision-Language Navigation](https://arxiv.org/abs/2608.12308) | 以 16 个固定容量槽保存指令相关的视觉 anchor/prototype，并由门控交叉注意力读取 | 候选 FIFO 与 active tracks 支持稳定或单帧证据晋升；read-before-write 保证当前决策只读取严格过去的历史，结合 plan-$K$、execute-one 闭环导航 |
+| [EgoCITE: Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory](https://arxiv.org/abs/2608.12627) | 将视频字幕与语音重写为自包含的原子记忆索引，并按动作、活动、话语和对话建立多粒度视图 | 结合语义检索与问题条件的时间相关性评分；主要面向第一视角问答而非机器人低层控制，但直接研究长时程经验的索引与读取 |
 
 ### 3.3 事件驱动与关键帧记忆
 
@@ -166,6 +169,7 @@
 | [M2-SMap: Memory-Efficient Semantic Mapping with Hierarchical Multi-Model Representation](https://arxiv.org/abs/2608.07074) | bounded planes、对象级 superquadrics 与 GMM residual primitives | 以层次 RGB-D 几何分解形成实时紧凑语义地图；这里的 memory-efficient 主要指地图存储预算 |
 | [LifelongCrossNav: Persistent 3D Semantic Memory for Cross-Floor Multi-Object Navigation](https://arxiv.org/abs/2608.07079) | 共享稀疏 3D semantic voxel memory | 在单个顺序任务中持续累积几何、可通行性和视觉语言特征，复用历史 POI 完成跨楼层多目标导航 |
 | [WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN](https://arxiv.org/abs/2608.07267) | 单目 RGB 历史压缩成固定长度 3D scene-token prefix | 以持久几何场景上下文共同条件化未来视图与动作块，支持连续闭环视觉语言导航 |
+| [SAP-Nav: Semantic-Aware Active Perception for Object Goal Navigation](https://arxiv.org/abs/2608.12707) | 从逐步房间观测增量构建可查询的空间—语义表示 | 在部分可观测环境中持久聚合目标证据，并以主动视点验证消除遮挡和语义歧义，支持零样本仿真与真机导航 |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -233,6 +237,10 @@
 | [Deep Episodic Memory: Encoding, Recalling, and Predicting Episodic Experiences](https://arxiv.org/abs/1801.04134) | 视觉—动作 episode | 无监督编码、相似经验检索、重建与未来预测 |
 | [AutoIntervene: Calibrated Intervention for Action-Chunking Imitation Learning Policies](https://arxiv.org/abs/2608.07065) | 成功执行形成的 visual-action support memory | 以视觉相似度和动作一致性判断 action chunk 是否受经验支持，校准人机控制切换并保留成功纠错片段用于后训练 |
 | [MemWM: Memory-Augmented Text-Based World Model](https://arxiv.org/abs/2608.07107) | transition rules、state caches、难预测事实与任务技能 | 检索世界记忆修正下一状态想象和动作选择；覆盖 ALFWorld 等文本式具身环境，边界是不直接控制真实机器人 |
+| [StellaVLA: In-Context Structured Demonstration for Generalizable Vision-Language-Action Models](https://arxiv.org/abs/2608.11671) | 跨示范的任务计划、子目标描述与语言化 3D 运动 | 按指令语义检索单条结构化示范作为上下文，可跨机器人、手部视频与 XR embodiment 迁移；部署仍由 action expert 高频控制 |
+| [Towards the Harness of Embodied Agents](https://arxiv.org/abs/2608.11246) | 长时程执行中的持久符号场景状态 | Thea 将机器人能力封装为工具，以 Scene Graph as Context 持续保存世界状态，并用 Evaluation as Exit Codes 判定成功、终止和失败原因 |
+| [Self-Evolving Embodied Agents via Skill-Harness Evolution](https://arxiv.org/abs/2608.11350) | 目标环境 rollout 形成的可复用技能与 context-code harness | SHAPER 冻结基础模型，由同一模型兼任 planner 与 optimizer，在不更新参数的情况下迭代外部技能和执行上下文 |
+| [Mind the Context: Continual Learning for Social Robots through Environmental-Social Disentanglement](https://arxiv.org/abs/2608.13448) | 跨环境与社交情境的持续学习经验 | 分离环境知识与社交知识，并通过 replay rehearsal 缓解顺序学习中的灾难性遗忘，使社交机器人保留旧情境能力 |
 
 ## 5. 训练与优化范式
 
@@ -301,6 +309,14 @@
 | [Decoupling Intention from Trajectory: A Representational Deduction Framework for World Action Models (PILOT)](https://arxiv.org/abs/2608.06994) | 动作分支显式预测潜在 state-transition tokens | 将状态转移 token 作为 motion CoT 保留在 reasoning space，以高层物理演化指导细粒度轨迹生成 |
 | [UniJEPA: A Unified Joint-Embedding Predictive Architecture for Task-Agnostic Visual World Modeling](https://arxiv.org/abs/2608.07409) | 同一 latent 空间中的图像光度变换与视频 next-embedding prediction | 以统一 anti-collapse 目标学习不变结构和等变动态，动作条件后训练后可执行零样本规划 |
 | [Beyond Myopic World Models: Long-Horizon End-to-End Training for Direct Future Prediction (DPWM)](https://arxiv.org/abs/2608.07420) | 将任意长度动作序列压缩为单个 embedding | 一次前向直接预测 endpoint observation，以长程终点目标替代递归 rollout 及其误差累积 |
+| [World Tokens: Enhancing Embodied Policies with Training-Time World Modeling](https://arxiv.org/abs/2608.09730) | 由未来视频去噪与动作生成共同监督的固定数量 world tokens | World Adapter 强制动作专家仅从共享 world tokens 读取视觉—语言上下文；部署时移除视频模型分支，保持 VLA 级延迟 |
+| [Keep the Future, Drop the Rollout: RIFT for World Action Models](https://arxiv.org/abs/2608.11521) | 学习 anticipation tokens，一次 prefill 写入完整的未来时空 K/V cache | 保留 action expert 的 future-read 接口但移除迭代视频 rollout 与 VAE 解码，以约 $1.1\times$ current-only 延迟维持 rollout-based WAM 的成功率 |
+| [Decoding Task Progress from VLA Representations](https://arxiv.org/abs/2608.13474) | 从 $\pi_{0.5}$ residual stream 线性解码归一化剩余时间 | probe 可迁移到未见任务并用于无标签 OOD/stall 检测，说明 VLA 内部表征携带任务进度；但该信号尚不能可靠 steering 策略 |
+| [ContactGuard: Pre-Contact Execution Monitoring with Action-Conditioned Latent World Models](https://arxiv.org/abs/2608.13438) | 由无标签机器人轨迹学习的多视角 latent world model 与少量失败标签 | 在接触前沿计划动作块滚动预测短期未来，以轻量 failure probe 判断是否中止高风险执行 |
+| [S2-HWM: Sparse Event-Structured Hierarchical World Model for Long-Horizon Surgical Robot Manipulation](https://arxiv.org/abs/2608.13103) | 从 primitive latent trajectory 提取稀疏事件边界，并预测下一边界状态、持续时间和累计回报 | 以 event manager—primitive worker 层次链式想象，越过低层 primitive 模型的短预测范围 |
+| [Temporal GRPO: Improving Long-Horizon Vision-Language-Action Policy via Temporal Credit Assignment](https://arxiv.org/abs/2608.13026) | 可检测任务阶段及对应动作区间上的阶段级相对优势 | 只比较到达同一阶段的 rollout，并将信用分配回相应动作区间，缓解轨迹级奖励对长程 VLA 的 credit aliasing |
+| [BrainWAM: Brain-Inspired World-Action Modeling for End-to-End Autonomous Driving](https://arxiv.org/abs/2608.12854) | 语义 VLA 路径与预测 WAM 路径在紧凑动作表示中融合 | 通过异步 rectified flow 解耦视频与动作去噪；属于自动驾驶边界工作，其双路径设计可供机器人世界—动作模型参考 |
+| [DreamX-Phi 1.0: Action-Conditioned Video World Model for Robotic Manipulation](https://arxiv.org/abs/2608.13489) | 末端位姿、夹爪状态、逐臂 $\mathrm{SE}(3)$ 编码与未来视觉联合监督 | 以深度分支和 SAM3/V-JEPA 一致性约束保持场景几何、小物体及双臂身份，并蒸馏为少步生成器 |
 | [ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow](https://arxiv.org/abs/2607.27924) | 物理时间中的连续 latent velocity field 与 ODE dynamics | 通过时间积分在任意分辨率预测未来或过去，并兼顾长程图像重建、规划表征和机器人控制；本批次为更新稿 |
 
 ### 5.2 TBPTT、梯度截断与完整轨迹训练
@@ -341,6 +357,7 @@
 | [ACE-Data-0: Human-Centric Ambient Capture as Embodied Data Engine](https://arxiv.org/abs/2607.28625) | 150 小时、1,700 万帧、75,000 个 episode；长程多模态交互 | 200 类任务、50 名参与者、2 个真实家庭环境；同步第一/第三视角、全身和手部运动、对象 6-DoF、音频与触觉 | 分层评测从感知信号、场景组件扩展至完整交互，暴露接触、遮挡、自运动和长时程条件下的能力缺口 |
 | [XEWorld: Can Action-Conditioned World Models Generalize to Unseen Robot Embodiments?](https://arxiv.org/abs/2608.05799) | 物理场景保持一致、机器人 embodiment 留出的受控评测 | 跨机器人操作世界模型 | 区分物理动力学迁移与二维外观匹配，并检验零样本迁移、少样本适配及灾难性遗忘 |
 | [GAUGE: A Measurement-Grounded Benchmark for Physical Fidelity in Simulation Engines and Video World Models](https://arxiv.org/abs/2608.05948) | 22 类真实轨迹驱动任务；刚体、绳缆、织物与体变形 | 物理引擎及视频世界模型 | 以校准物理参数和任务特定观测量检验碰撞、摩擦、动量、振荡、接触与形变保真度 |
+| [H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation for World Models](https://arxiv.org/abs/2608.13049) | 人类示范到目标机器人 embodiment 的视频生成；带任务目标、动作事件、接触与对象响应标注 | 人—机器人跨 embodiment 操作 | 从动作转移、接触和物体响应等五个维度评测世界模型是否生成可执行且物理一致的机器人操作未来 |
 
 ### 6.2 具身导航、个性化与持久世界状态
 
@@ -364,6 +381,8 @@
 | [Embodied Agents Take Control: General-Purpose Software Agents for Zero-Shot Visual Navigation](https://arxiv.org/abs/2607.26148) | 持续 perceive–act–verify–correct 的零样本具身控制循环 | 通用软件智能体可直接闭环导航，但长任务中延迟和上下文持续增长会导致性能显著下降，揭示长程记忆与上下文管理瓶颈 |
 | [StreamArena: Toward Continuous, Interactive, and Long-Horizon Agentic Streaming Video Understanding](https://arxiv.org/abs/2608.05703) | 243 个完整视频、平均 88.8 分钟；3,646 个开放式问答 | 评测实时感知、历史回溯、主动交互与工具使用；StreamMind 以异步前后端构建持久多模态记忆，但不执行机器人低层控制 |
 | [GST-Bench: Can VLMs Develop Global Spatial Awareness from Video?](https://arxiv.org/abs/2608.05747) | 6,790 分钟连续视频中的全局空间推理 | 要求从长时第一视角观测形成一致场景表示并映射到俯视图；输出为 VQA 而非动作 |
+| [EgoMonth: A Month-Level Egocentric Video Benchmark for Long-Term Spatiotemporal Memory](https://arxiv.org/abs/2608.13113) | 20 名参与者、300 多小时、跨 20–120 天的第一视角记录与 1,443 个 QA | 以 schema consolidation、episodic indexing 和 cascading reasoning 三层 14 项任务检验跨日/周记忆；输出为问答而非动作 |
+| [PlayWorld: Benchmarking World Models with Agent Players over Long-Horizon Objectives](https://arxiv.org/abs/2608.13552) | 171 个交互场景，由多模态 agent player 自主完成长程目标 | 评测几何一致性、交互保真、视野外演化与 insight evolution；面向交互式视频世界而非物理机器人，但直接诊断持久世界状态 |
 
 ### 6.3 通用 POMDP 与记忆评测协议
 
