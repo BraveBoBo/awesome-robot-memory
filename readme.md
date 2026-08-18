@@ -107,6 +107,7 @@
 | [Chameleon: Control-Indexed Prospective Memory for Visuomotor Manipulation](https://arxiv.org/abs/2603.24576) | 写入 geometry-grounded embodied event | 可微记忆栈形成面向控制的 prospective state |
 | [CycleManip: Enabling Cyclic Task Manipulation via Effective Historical Perception](https://arxiv.org/abs/2512.01022) | cost-aware 历史采样 | 面向重复动作和正确终止时间 |
 | [Bi-HIL: Bilateral Control-Based Multimodal Hierarchical Imitation Learning](https://arxiv.org/abs/2603.13315) | 以子任务进度率识别并写入关键帧 | 面向接触丰富操作的层次化记忆 |
+| [SparkVLA: Stop-Aware Hierarchical VLA with Adaptive Action Chunking for Long-Horizon Manipulation](https://arxiv.org/abs/2608.16172) | 在子任务开始时缓存 history-aware onset-state anchor | 以锚点和目标语义引导视觉 token 裁剪，并统一排序 Stop 与不同长度的动作前缀 |
 
 ### 3.4 递归隐状态、状态空间模型与完整历史
 
@@ -177,6 +178,7 @@
 | [WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN](https://arxiv.org/abs/2608.07267) | 单目 RGB 历史压缩成固定长度 3D scene-token prefix | 以持久几何场景上下文共同条件化未来视图与动作块，支持连续闭环视觉语言导航 |
 | [SAP-Nav: Semantic-Aware Active Perception for Object Goal Navigation](https://arxiv.org/abs/2608.12707) | 从逐步房间观测增量构建可查询的空间—语义表示 | 在部分可观测环境中持久聚合目标证据，并以主动视点验证消除遮挡和语义歧义，支持零样本仿真与真机导航 |
 | [OpenBelief-Nav: Evidence-Preserving Object Memory for Open-Vocabulary Language-Guided Navigation](https://arxiv.org/abs/2608.13923) | 观测级短语、可靠性线索、frame-mask provenance，以及分离的几何/视觉聚合表示 | 不把对象过早压缩成单一标签，而是保留少数但任务相关的语义假设，再按任务执行固定词表投影或自由检索；含 Unitree G1 实验 |
+| [Adaptive Repulsive Pheromone Clustering for Foraging Robot Swarms](https://arxiv.org/abs/2608.16822) | 机器人写入的 repulsive-pheromone waypoints 与空间聚类 | 将已探索的低价值区域外化为群体空间记忆，引导其他机器人避免重复搜索；非 VLA |
 
 ### 3.6 语言、动作与多模态记忆
 
@@ -195,6 +197,7 @@
 | [Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration](https://arxiv.org/abs/2607.29482) | 近期机器人状态历史 | 用历史而非独立高斯噪声初始化 stochastic-interpolant action flow，显式耦合过去状态与未来动作并降低生成路径和推理成本 |
 | [Explicit Language Memory for Long-Horizon Planning in Vision-Language-Action Models](https://arxiv.org/abs/2608.04765) | 递归自然语言记忆 | 高层 VLM 滚动压缩已完成阶段、当前证据、失败和下一意图，并以子任务条件化低层 VLA 的连续动作生成 |
 | [LAMP: Latent Motion Prior-Guided Real-World Learning for Dexterous Hand Manipulation](https://arxiv.org/abs/2607.06323) | 手部动作历史 | 将近期高维手部动作压缩为可解码的 history-conditioned latent prior，供纯 visuomotor policy 与 online residual RL 在接触一致的潜在动作空间中修正 |
+| [τ₀-VLA: A Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation](https://arxiv.org/abs/2608.16885) | 高层执行记忆 | 根据已执行过程生成下一子任务，并在困难决策上用世界模型搜索候选方案；低层策略负责跨 embodiment 动作执行 |
 
 ## 4. 跨 Episode 经验与系统级记忆
 
@@ -251,6 +254,10 @@
 | [Mind the Context: Continual Learning for Social Robots through Environmental-Social Disentanglement](https://arxiv.org/abs/2608.13448) | 跨环境与社交情境的持续学习经验 | 分离环境知识与社交知识，并通过 replay rehearsal 缓解顺序学习中的灾难性遗忘，使社交机器人保留旧情境能力 |
 | [Ontology-Grounded World Models for Failure Diagnosis and Closed-Loop Repair in Physical AI Systems](https://arxiv.org/abs/2608.13901) | 未满足任务谓词、参数、纠正路由与修复后验收结果 | Onto-EV-WM 以 task-local TBox/ABox 保存类型化失败状态，并通过 predicate-gated verification 决定接受、重试或切换纠正机制 |
 | [AgentRewind: Recoverable Execution for Long-Horizon LLM Agents](https://arxiv.org/abs/2608.14380) | 对齐保存 agent context 与可控环境状态的 checkpoint | 允许回到早期状态并携带前次尝试信息重新执行；属于通用软件 agent 边界工作，但其上下文—环境联合回滚可供机器人执行 harness 参考 |
+| [Don't Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory](https://arxiv.org/abs/2608.16889) | 子任务解法与 invocation、handoff、lookahead 转移条件 | 将逐子任务探索结果写入记忆后组合成长程轨迹，把探索成本从阶段数的乘性增长降为加性增长；无需更新参数 |
+| [Zetta ζ: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence](https://arxiv.org/abs/2608.16590) | 跨 rollout 的 runtime critic 与 recovery skill | 在冻结基础策略外以三种时间尺度闭环治理动作、提出恢复方案，并经验证后更新代码技能 |
+| [HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents](https://arxiv.org/abs/2608.16447) | 成功轨迹提炼的 habitual leaf-reflex rules | 离线编译可审计、可 abstain 的一步程序记忆；规则不能唯一确定合法动作时回退原递归 agent |
+| [FlexWorm: Primitive-augmented Hybrid Contact-motion Planning for Suction-based Multi-segment Deformable Robots](https://arxiv.org/abs/2608.16853) | 经验证的短运动片段库 | 用 observation–primitive embedding 检索局部动作提案，失败时回退 IK hybrid search；属于非 VLA 的经验检索规划 |
 
 ## 5. 训练与优化范式
 
@@ -462,3 +469,4 @@
 | [大模型记忆系统分析框架](docs/llm-memory-system-framework.md) | 参数化/显式记忆、系统分层、原子操作、生命周期、分类与机器人映射 | 作为后续论文方法卡片和统一分析维度 |
 | [Large VLM-based VLA Models for Robotic Manipulation: A Survey](https://arxiv.org/abs/2508.13073) | 大型 VLM-based VLA 的架构、训练、world model、memory 与效率 | 完善 VLA related-work taxonomy |
 | [A Survey on VLA Models for Embodied AI](https://arxiv.org/abs/2405.14093) | VLA 方法、数据、基准与能力 | 持续追踪领域进展与查漏补缺 |
+| [Security of Foundation-Model-Powered Embodied Agents: Attack Surfaces, Attacks, Defenses, and Evaluation](https://arxiv.org/abs/2608.16843) | 基础模型具身系统的五层十二类攻击面，包括 context 与长期记忆 | 用于分析记忆污染、状态 provenance、长程攻击传播及闭环防御评测 |
